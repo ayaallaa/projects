@@ -22,6 +22,6 @@ Section Active state by using getBoundingClientRect().top and made range of top 
 make a top button to scroll the page to the top
 
 # Built With
-*[HTML]
-*[CSS]
-*[JavaScript]
+* [HTML]
+* [CSS]
+* [JavaScript]
