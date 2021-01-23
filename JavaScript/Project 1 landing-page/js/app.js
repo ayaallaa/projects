@@ -38,56 +38,90 @@ const navchilds=navul.childNodes;
 
 
 
-// Build menu 
+// Build menu
+let sec1top ;
+let sec2top ;
+let sec3top ;
+let sec4top ;
+function topsec (){
 const sec1= document.getElementById("section1");
-let sec1top=sec1.offsetTop;
+sec1top=sec1.offsetTop;
 const sec2= document.getElementById("section2");
-let sec2top=sec2.offsetTop;
+sec2top=sec2.offsetTop;
 const sec3= document.getElementById("section3");
-let sec3top=sec3.offsetTop;
+sec3top=sec3.offsetTop;
 const sec4= document.getElementById("section4");
-let sec4top=sec4.offsetTop;
-
+sec4top=sec4.offsetTop;
+}
+topsec ();
 // Scroll to section on link click
 navchilds[0].addEventListener('click', function () {
-  window.scrollTo(0,sec1top );
-});
+  window.scrollTo(
+    {
+  top: sec1top,
+  behavior: 'smooth',
+}
+)});
 navchilds[1].addEventListener('click', function () {
-  window.scrollTo(0,sec2top );
-});
+  window.scrollTo(
+    {
+  top: sec2top,
+  behavior: 'smooth',
+}
+)});
 navchilds[2].addEventListener('click', function () {
-  window.scrollTo(0,sec3top );
-});
+  window.scrollTo(
+    {
+  top: sec3top,
+  behavior: 'smooth',
+}
+)});
 navchilds[3].addEventListener('click', function () {
-  window.scrollTo(0,sec4top );
-});
+  window.scrollTo(
+    {
+  top: sec4top,
+  behavior: 'smooth',
+}
+)});
 
 
 // Set sections as active
 let activeSec =navul;
+ let textofnav ;
+let activeNav ;
 function activeSection (){
 
 for (const section of sections) {
     let topSec = section.getBoundingClientRect().top; 
     //console.log(section);
     //console.log(topSec);
-    if(topSec >= 0 && topSec <= 250)
+    if(topSec >= -50 && topSec <= 200)
         {
             activeSec=section;
-            //console.log(activeSec);
+            textofnav=activeSec.firstElementChild.textContent;
+            
         }
     section.style.background= 'linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%)';
     }
     
 activeSec.style.background = '#2B60DE';
-  
+for (const navchild of navchilds){
+      navchild.style.background = null;
+    //navchild.style.background ="black";
+if(textofnav==navchild.textContent)
+    { activeNav=navchild;
+      activeNav.style.background ="blue";
+    
+    }
+    
+}
 }
 
 
 //window.addEventListene ‘scroll’,
 window.addEventListener('scroll', function () {
+  topsec();
   activeSection();
-  //console.log(sec3Top)
 });
 
 
@@ -98,7 +132,10 @@ const foot =document.getElementsByClassName('page__footer')[0] ;
 Btop.innerHTML = '<button type="button">Top</button>';
 foot.appendChild(Btop);
 Btop.addEventListener('click', function () {
-  window.scrollTo(0, 0);
-});
-
-
+  //window.scrollTo(0, 0);
+     window.scrollTo(
+    {
+  top: 0,
+  behavior: 'smooth',
+}
+)});
